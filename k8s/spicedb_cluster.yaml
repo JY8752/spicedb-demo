@@ -1,0 +1,19 @@
+apiVersion: authzed.com/v1alpha1
+kind: SpiceDBCluster
+metadata:
+  name: dev
+spec:
+  config:
+    # replicas: 2
+    # datastoreEngine: postgres
+    # logLevel: debug
+    datastoreEngine: memory
+    # grpcAddr: :50052
+  secretName: dev-spicedb-config
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: dev-spicedb-config
+stringData:
+  preshared_key: "averysecretpresharedkey"

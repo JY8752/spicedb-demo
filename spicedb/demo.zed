@@ -1,0 +1,20 @@
+definition user {}
+
+definition restaurant {
+  relation customers: user
+  relation adult_customers: user with is_adult
+
+  permission order_food = customers
+  permission order_alcohol = adult_customers
+}
+
+caveat is_adult(age int) {
+  age >= 20
+}
+
+definition post {
+  relation author: user
+  relation viewer: user
+
+  permission read = viewer + author
+}

@@ -1,0 +1,26 @@
+schema: |
+  definition user {}
+
+  /**
+   * resource is an example resource.
+   */
+  definition resource {
+      relation writer: user
+      relation viewer: user
+
+      permission write = writer
+      permission view = viewer + writer
+  }
+relationships: |-
+  // Some example relationships
+  resource:someresource#viewer@user:somegal
+  resource:someresource#writer@user:anotherguy
+  resource:anotherresource#writer@user:somegal
+assertions:
+  assertTrue:
+    - resource:someresource#view@user:somegal
+    - resource:someresource#view@user:anotherguy
+    - resource:someresource#write@user:anotherguy
+  assertFalse:
+    - resource:someresource#write@user:somegal
+validation: null
