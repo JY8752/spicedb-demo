@@ -1,0 +1,23 @@
+name: "SpiceDB"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "actions/checkout@v4"
+      - uses: "authzed/action-spicedb@v1"
+        with:
+          version: "latest"
+      # TODO: Add test steps
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "actions/checkout@v4"
+      - uses: "authzed/action-spicedb-validate@v1"
+        with:
+          validationfile: "spicedb/*"
